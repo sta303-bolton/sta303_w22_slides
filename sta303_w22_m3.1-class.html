@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STA303H1S/1002H Module 3</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Liza Bolton" />
+    <meta name="date" content="2022-02-09" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides_303.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STA303H1S/1002H Module 3
+## Correlated data and linear mixed models
+### Prof. Liza Bolton
+### February 09, 2022
+
+---
+
+
+
+
+
+# Our plan today
+
+.pull-left[
+- Reminder: 'Netiquette' for class
+- Module 3 overview
+- Code demo
+- Portfolio
+- To-dos
+- Quick break (hopefully)
+- Office hour (in same call)
+]
+
+.pull-right[
+&lt;img src="images/plan.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+.tiny[Image source: https://www.shopify.com/blog/business-plan]
+]
+
+---
+## Reminder: 'Netiquette' during class
+
+To keep chat a useful and friendly place, please abide by the following:
+
+- Don't send **private messages** to ask questions
+  - similar logic to Piazza, the answer will help everyone
+  - if it really should be private, it should be an email (on anon Piazza post)
+- If I have **missed your question**, it is okay to post it again 
+- **Stay on topic!** This helps to not distract your peers and makes it easier for us to keep up with questions.
+- **Download a copy of the slides** from the [course overview](https://q.utoronto.ca/courses/253305/pages/course-overview) page to skim through while you wait for class to start. You may see that I've already answered your question and can save yourself the effort. 
+  - My first years would often ask questions to which the answers were literally on the slide in front of them. I am always happy to clarify things, though!
+- Be **kind** to each other. 
+
+---
+class: middle, center, inverse
+
+#  Module 3 overview
+
+---
+
+&lt;div style="background: #EB7925; border: 1px solid #EB7925;"&gt;&lt;span style="font-size: 20pt; color: #ffffff;"&gt;&lt;strong&gt;Correlated data and sources of variability&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div style="border: 1px solid #EB7925; padding: 5px;"&gt;
+                &lt;h5&gt;Subtopics&lt;/h5&gt;&lt;span style="font-size: 18pt;"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Recognizing correlated data&amp;nbsp;&lt;/li&gt;
+                    &lt;li&gt;'&lt;em&gt;Teaching and learning world&lt;/em&gt;' (i.e., not what you'll be doing in practice) examples of calculating sources of variance in a mixed-effects model (Statdew Valley)&amp;nbsp;&lt;/li&gt;
+                &lt;/ul&gt;
+                &lt;h4&gt;Resources and readings&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Content in the &lt;a class="inline_disabled" href="https://sta303-bolton.github.io/sta303-w22-courseguide/m3.html" target="_blank" rel="noopener"&gt;course guide&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;📖 &lt;a href="https://bookdown.org/roback/bookdown-BeyondMLR/ch-corrdata.html#recognizing-correlation"&gt;Chapter 7 (&amp;sect; 7.3 and 7.8) of Roback, P. &amp;amp; Legler, J. Beyond Multiple Linear Regression. (2021). Retrieved from: https://bookdown.org/roback/bookdown-BeyondMLR/&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;🐝 &lt;a class="inline_disabled" href="https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fsta303-bolton%2Fsta303-w22-activities&amp;amp;urlpath=shiny%2Fsta303-w22-activities%2Finst%2Ftutorials%2Fsta303_m3_statdew%2Fsta303_m3_statdew-valley.Rmd&amp;amp;branch=master" target="_blank" rel="noopener"&gt;Statdew Valley interactive&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+---
+
+&lt;div style="background: #005063; border: 1px solid #005063;"&gt;&lt;span style="font-size: 20pt;"&gt;&lt;strong&gt;&lt;span style="color: #ffffff;"&gt;Linear mixed models&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div style="border: 1px solid #005063; padding: 5px;"&gt;
+                &lt;h5&gt;Subtopics&lt;/h5&gt;&lt;span style="font-size: 18pt;"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;How do we fit and interpret linear mixed models in practice?&lt;/li&gt;
+                    &lt;li&gt;Random intercepts and random slopes&lt;/li&gt;
+                    &lt;li&gt;Comparing nested models with likelihood ratio tests&lt;/li&gt;
+                &lt;/ul&gt;
+                &lt;h4&gt;Resources and readings&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Content in the &lt;a class="inline_disabled" href="https://sta303-bolton.github.io/sta303-w22-courseguide/m3.html" target="_blank" rel="noopener"&gt;course guide&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;📖 &lt;a class="inline_disabled external" href="https://bookdown.org/roback/bookdown-BeyondMLR/ch-multilevelintro.html" target="_blank" rel="noopener"&gt;&lt;span&gt;&lt;span dir="ltr" role="presentation"&gt;Chapter 8&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span dir="ltr" role="presentation"&gt;of Roback, P. &amp;amp; Legler, J.&lt;/span&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span dir="ltr" role="presentation"&gt;Beyond&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span dir="ltr" role="presentation"&gt;Multiple Linear Regression.&lt;/span&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span dir="ltr" role="presentation"&gt;(2021). Retrieved&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;&lt;span dir="ltr" role="presentation"&gt;from:&lt;/span&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;span dir="ltr" role="presentation"&gt;https://bookdown.org/roback/bookdown&lt;/span&gt;&lt;span dir="ltr" role="presentation"&gt;-&lt;/span&gt;&lt;span dir="ltr" role="presentation"&gt;BeyondMLR&lt;/span&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;span dir="ltr" role="presentation"&gt;&lt;strong&gt;Optional&lt;/strong&gt;: You may find&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a class="inline_disabled external" href="https://bookdown.org/roback/bookdown-BeyondMLR" target="_blank" rel="noopener"&gt;&lt;span&gt;Chapters 9 and 10 of Roback and Legler&lt;/span&gt;&lt;/a&gt;, as well as Chapter 2 in&lt;span&gt;&amp;nbsp;&lt;/span&gt;&lt;a class="inline_disabled external" href="https://librarysearch.library.utoronto.ca/permalink/01UTORONTO_INST/14bjeso/alma991106881280906196%C2%A0" target="_blank" rel="noopener"&gt;&lt;span&gt;Simon Wood&amp;rsquo;s Generalized Additive Model&lt;/span&gt;&lt;/a&gt;&lt;span&gt;&amp;nbsp;&lt;/span&gt;interesting,&lt;span&gt;&amp;nbsp;&lt;/span&gt;too (available free through U of T library)&lt;/span&gt;&lt;/li&gt;
+                    &lt;li&gt;🗣️ Vocal pitch case study (in the notes)&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+---
+
+&lt;div style="background: #C969A1; border: 1px solid #C969A1;"&gt;&lt;span style="font-size: 20pt; color: #ffffff;"&gt;&lt;strong&gt;Statistical writing&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div style="border: 1px solid #C969A1; padding: 5px;"&gt;
+               &lt;h5&gt;Subtopics&lt;/h5&gt;&lt;span style="font-size: 18pt;"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Support resources at U of T&lt;/li&gt;
+                    &lt;li&gt;Tips and tricks workshop&lt;/li&gt;
+                &lt;/ul&gt;
+                &lt;h4&gt;Resources and readings&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Content in the &lt;a class="inline_disabled" href="https://sta303-bolton.github.io/sta303-w22-courseguide/m3.html#advice-for-polishing-your-writing" target="_blank" rel="noopener"&gt;course guide&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;Second Wednesday Speaker series: Writing workshop (will also be recorded for reference)&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+---
+class: inverse, middle
+
+# Correlated data and linear mixed models
+
+---
+
+&lt;img src="images/m3/table.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, middle
+
+# Assessments
+
+---
+# Portfolio
+
+The portfolio is due February 17 at 3:03 p.m. The instructions are best viewed directly in the course guide or on JupyterHub as it won't be submitted through Quercus, but MarkUs.
+
+&lt;div class="btn" style="background: #004F63; border: none; height: 50px; margin: 5px; text-align: center;"&gt;&lt;span style="font-size: 20pt;"&gt;&lt;a style="text-decoration: none;" href="https://sta303-bolton.github.io/sta303-w22-courseguide/portfolio.html"&gt;&lt;span style="color: #ffffff;"&gt;&lt;strong&gt;Instructions&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+&lt;div class="btn" style="background: #004F63; border: none; height: 50px; margin: 5px; text-align: center;"&gt;&lt;strong&gt;&lt;span style="font-size: 20pt;"&gt;&lt;a style="text-decoration: none;" title="Portfolio on JupyterHub" href="https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fsta303-bolton%2Fsta303-w22-portfolio&amp;amp;urlpath=rstudio%2F&amp;amp;branch=master"&gt;&lt;span style="color: #ffffff;"&gt;Template on JupyterHub&lt;/span&gt; &lt;/a&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+---
+class: middle, center
+
+# I have fixed a few mistakes in the original release of the instructions. You can find them documented on the Errata page.
+
+[Errata](https://sta303-bolton.github.io/sta303-w22-courseguide/faqs-and-errata.html#errata)
+
+---
+## Opportunities to get help with the portfolio
+
+.pull-left[
+### February 11
+🙋Extra TA office hour to help with the portfolio, 2:10 to 4:00 p.m. ET
+
+### February 14
+🙋New College Statistics Aid Center office hours run by one of our course TAs (Lei) 6 to 9 p.m. ET — all welcome!
+]
+
+.pull-right[
+### February 16
+Prof office hours after the writing workshop
+
+### February 17
+🙋 TA office hour to help with the portfolio, 12:00 to 1:00 p.m. ET
+]
+
+&lt;div class="btn" style="background: #CE4441; border: none; height: 50px; margin: 5px; text-align: center;"&gt;&lt;strong&gt;&lt;span style="font-size: 20pt;"&gt;&lt;a style="text-decoration: none;" title="Office hour page" href="https://q.utoronto.ca/courses/253305/pages/office-hours
+"&gt;&lt;span style="color: #ffffff;"&gt;Office hours page&lt;/span&gt; &lt;/a&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+
+---
+## Module 3 writing
+
+[__Link__](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-writing-and-peer-feedback.html#module-3-writing-task)
+
+#### Prompt (see link for full prompt)
+
+Write the methods section of parts of the case study from [Chapter 8 Case Study: Music Performance Anxiety (Roback &amp; Legler, 2021)](https://bookdown.org/roback/bookdown-BeyondMLR/ch-multilevelintro.html#cs:music).
+
+I strongly suggest that you use **RMarkdown** for your writing in preparation for your final project. Knit and submit as a **PDF**. (You won't lose marks for doing it in Word, but if you're not comfortable in RMarkdown yet, I'd really recommend working on that! [Guide to writing LaTex equations in Word](https://support.microsoft.com/en-us/office/linear-format-equations-using-unicodemath-and-latex-in-word-2e00618d-b1fd-49d8-8cb4-8d17f25754f8).)
+
+Write a short methods section that covers the final model from section 8.10.
+
+---
+## Writing __workshop__ next Wednesday (in class time)
+
+Earn 0.25 points towards your knowledge basket!
+
+Points based on attending at least 75% of a single 50 minute session AND completing the associated survey by Friday February 18 at 3:03 p.m. ET
+
+---
+## Grading update
+
+- Mini-portfolio: Hoping to have grades to you early next week, at the latest
+
+- Professional development proposal: Within the 1.5 weeks
+
+---
+# To do
+
+.pull-left[
+- [🧺 Module 3 writing](https://q.utoronto.ca/courses/253305/assignments/782398)
+  - _Create_ phase due Feb 11 at 3:03 p.m.
+  - _Assess_ phase due Feb  15 3:03 p.m.
+  - _Reflect_ phase due Feb 18 at 3:03 p.m.
+- [Portfolio](https://sta303-bolton.github.io/sta303-w22-courseguide/mini-portfolio.html) due Thursday, Feb 3 at 3:03 p.m. ET 
+
+]
+
+.pull-right[
+- [Make sure you're up to date with the course announcements](https://q.utoronto.ca/courses/253305/discussion_topics/1590418)
+- [Read (and save) the syllabus!](https://q.utoronto.ca/courses/253305/assignments/syllabus)  
+- [Join Piazza](piazza.com/utoronto.ca/winter2022/sta303sta1002)
+]
+
+---
+class: inverse, middle
+
+# Have a great week! 
+# Next Wednesday: Writing workshop
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

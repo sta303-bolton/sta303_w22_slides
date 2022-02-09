@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STA303H1S/1002H Module 2</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof. Liza Bolton" />
+    <meta name="date" content="2022-01-26" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides_303.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# STA303H1S/1002H Module 2
+## Professional skills for data analysis
+### Prof. Liza Bolton
+### January 26, 2022
+
+---
+
+
+
+
+
+# Our plan today
+
+.pull-left[
+- Two truths and one lie / introductions
+- 'Netiquette' for class
+- Module 2 overview
+- Joins
+- Mini-portfolio
+- Upcoming assessments
+- To-dos
+- Quick break (hopefully)
+- Office hour (in same call)
+]
+
+.pull-right[
+&lt;img src="images/plan.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+.tiny[Image source: https://www.shopify.com/blog/business-plan]
+]
+
+---
+## Reminder: 'Netiquette' during class
+
+To keep chat a useful and friendly place, please abide by the following:
+
+- Don't send **private messages** to ask questions
+  - similar logic to Piazza, the answer will help everyone
+  - if it really should be private, it should be an email (on anon Piazza post)
+- If I have **missed your question**, it is okay to post it again 
+- **Stay on topic!** This helps to not distract your peers and makes it easier for us to keep up with questions.
+- **Download a copy of the slides** from the [course overview](https://q.utoronto.ca/courses/253305/pages/course-overview) page to skim through while you wait for class to start. You may see that I've already answered your question and can save yourself the effort. 
+  - My first years would often ask questions to which the answers were literally on the slide in front of them. I am always happy to clarify things, though!
+- Be **kind** to each other. 
+
+---
+class: middle, center, inverse
+
+#  Module 2 overview
+
+---
+
+&lt;div style="background: #EB7925; border: 1px solid #EB7925; "&gt;&lt;span style="font-size: 20pt; color: #ffffff;"&gt;&lt;strong&gt;Data wrangling and visualization&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div style="border: 1px solid #EB7925; padding: 5px;"&gt;
+                &lt;h5&gt;Subtopics&lt;/h5&gt;&lt;span style="font-size: 18pt;"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Tidy data&lt;/li&gt;
+                    &lt;li&gt;Student grades case study&lt;/li&gt;
+                &lt;/ul&gt;&lt;/span&gt;
+                &lt;h5&gt;Resources and readings&lt;/h5&gt;&lt;span style="font-size: 18pt;"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Content in the &lt;a class="inline_disabled" href="https://sta303-bolton.github.io/sta303-w22-courseguide/m2.html" target="_blank" rel="noopener"&gt;course guide&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;📖 Wickham &amp;amp; Grolemund.&amp;nbsp;&lt;i&gt;R for Data Science&lt;/i&gt;. 2017&amp;nbsp;&lt;a href="https://r4ds.had.co.nz/data-visualisation.html"&gt;Chapter 3: Data Visualization&lt;/a&gt; and&amp;nbsp;&lt;a href="https://r4ds.had.co.nz/transform.html"&gt;Chapter 5: Data &lt;/a&gt;&lt;a href="https://r4ds.had.co.nz/transform.html"&gt;transformation&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;Student grades case study
+                        &lt;ul&gt;
+                            &lt;li&gt;📺 3 videos, and&lt;/li&gt;
+                            &lt;li&gt;💻 associated coding activity&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;&lt;span&gt;
+                        &lt;/ul&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+---
+
+&lt;div style="background: #005063; border: 1px solid #005063;"&gt;&lt;span style="font-size: 20pt;"&gt;&lt;strong&gt;&lt;span style="color: #ffffff;"&gt;Ethical professional practice&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div style="border: 1px solid #005063; padding: 5px;"&gt;
+                &lt;h5&gt;Subtopics&lt;/h5&gt;&lt;span style="font-size: 18pt;"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Why should we be ethical?&lt;/li&gt;
+                    &lt;li&gt;Getting data&lt;/li&gt;
+                    &lt;li&gt;Analyzing data&lt;/li&gt;
+                    &lt;li&gt;Making decisions&lt;/li&gt;
+                &lt;/ul&gt;&lt;/span&gt;
+                &lt;h5&gt;Resources and readings&lt;/h5&gt;&lt;span style="font-size: 18pt;"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a class="inline_disabled" href="https://sta303-bolton.github.io/sta303-w22-courseguide/m2.html" target="_blank" rel="noopener"&gt;Content in the course guide&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;📖 Motulsky, H.J., 2014.&amp;nbsp;&lt;i&gt;Common misconceptions about data analysis and statistics&lt;/i&gt;.&amp;nbsp;&lt;a href="https://doi.org/10.1007/s00210-014-1037-6"&gt;https://doi.org/10.1007/&lt;/a&gt;&lt;a href="https://doi.org/10.1007/s00210-014-1037-6"&gt;s00210-014-1037-6&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;📖 Lum, K &amp;amp; Isaac, W.&amp;nbsp;&lt;i&gt;To predict and serve?&lt;/i&gt;(2016).&amp;nbsp;&lt;a href="https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2016.00960.x"&gt;https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2016.00960.x#&lt;/a&gt;&lt;a href="https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2016.00960.x"&gt;sign960-bib-0001&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;📖 Aschwanden, C. (2015).&amp;nbsp;&lt;i&gt;Science Isn&amp;rsquo;t Broken: It&amp;rsquo;s just a hell of a lot harder than we give it credit for&lt;/i&gt;. Retrieved from &lt;a href="https://fivethirtyeight.com/features/science-isnt-broken"&gt;https://fivethirtyeight.com/features/&lt;/a&gt;&lt;a href="https://fivethirtyeight.com/features/science-isnt-broken"&gt;science-isnt-broken&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+                &lt;/ul&gt;&lt;/span&gt;
+            &lt;/div&gt;
+---
+
+&lt;div style="background: #C969A1; border: 1px solid #C969A1;"&gt;&lt;span style="font-size: 20pt; color: #ffffff;"&gt;&lt;strong&gt;Statistical communication&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;div style="border: 1px solid #C969A1; padding: 5px;"&gt;
+                &lt;h5&gt;Subtopics&lt;/h5&gt;&lt;span style="font-size: 18pt;"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;Why communication is important&lt;/li&gt;
+                    &lt;li&gt;What we can learn from Churchill&amp;rsquo;s mother&lt;/li&gt;
+                    &lt;li&gt;Common report components&lt;/li&gt;
+                    &lt;li&gt;Paraphrasing&lt;/li&gt;
+                &lt;/ul&gt;&lt;/span&gt;
+                &lt;h5&gt;Resources and readings&lt;/h5&gt;&lt;span style="font-size: 18pt;"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a class="inline_disabled" href="https://sta303-bolton.github.io/sta303-w22-courseguide/m2.html" target="_blank" rel="noopener"&gt;Content in the course guide&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+                &lt;/ul&gt; &lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+---
+class: middle, center
+
+# Joins
+
+&lt;div class="btn" style="background: #CE4441; border: none; height: 50px; margin: 5px; text-align: center;"&gt;&lt;a style="text-decoration: none;" href="https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fsta303-bolton%2Fsta303-w22-activities&amp;urlpath=%2Fshiny%2Fsta303-w22-activities%2Finst%2Ftutorials%2Fsta303_m2_joins%2FSTA303_m2_joins.Rmd&amp;branch=master"&gt;&lt;span style="color: #ffffff; font-size: 20px;"&gt;&lt;strong&gt;Join me (JupyterHub interactive)&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+---
+class: middle, center
+
+# Mini-portfolio
+
+The mini-portfolio is due February 3 at 3:03 p.m. The instructions are best viewed directly in the course guide or on JupyterHub as it won't be submitted through Quercus, but Markus.
+
+&lt;div class="btn" style="background: #004F63; border: none; height: 50px; margin: 5px; text-align: center;"&gt;&lt;span style="font-size: 20pt;"&gt;&lt;a style="text-decoration: none;" href="https://sta303-bolton.github.io/sta303-w22-courseguide/mini-portfolio.html"&gt;&lt;span style="color: #ffffff;"&gt;&lt;strong&gt;Instructions&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+&lt;div class="btn" style="background: #004F63; border: none; height: 50px; margin: 5px; text-align: center;"&gt;&lt;strong&gt;&lt;span style="font-size: 20pt;"&gt;&lt;a style="text-decoration: none;" title="Mini-portfolio on JupyterHub" href="https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fsta303-bolton%2Fsta303-w22-mini-portfolio&amp;amp;urlpath=rstudio%2F&amp;amp;branch=master"&gt;&lt;span style="color: #ffffff;"&gt;Template on JupyterHub&lt;/span&gt; &lt;/a&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+---
+class: middle, inverse, center
+# Upcoming assessments
+
+---
+## Module 2 writing
+
+[__Link__](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-writing-and-peer-feedback.html#module-2-writing-task)
+
+#### Prompt
+
+Read [*Science isn't broken* (Aschwanden, 2015)](https://fivethirtyeight.com/features/science-isnt-broken/) using the *previewing* and *skimming* strategy outlined below. Discuss what you learn from the article, with a focus on what you **notice about your own thinking** when playing with the *"Hack Your Way To Scientific Glory*" interactive. Make sure you paraphrase appropriately (see [Module 2 paraphrasing section](https://sta303-bolton.github.io/sta303-w22-courseguide/m2.html#paraphrasing)) and add the reference for the article. (It is okay to put the reference by itself on a second page, if required.) 
+
+
+---
+## Pre-knowledge check __workshop__ next Wednesday (in class time)
+
+Earn 0.5 points towards your knowledge basket*!
+
+This counts even if you didn't do the knowledge check (folks who joined off the waitlist take note.)
+
+There is also a _no points_ [practice version of the pre-knowledge check](https://q.utoronto.ca/courses/253305/quizzes/242031) available now.
+
+.footnote[*unless you've already earned the full 1 point for completeing + scoring 80%+]
+
+---
+## Professional development task proposal due Feb 3 (at 3:03 p.m. ET)
+
+.pull-left[
+.midi[
+[Task overview link](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-professional-development-task.html) 
+
+[Specific proposal instructions](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-professional-development-task.html#professional-development-proposal)
+
+The task you choose must be clearly relevant to improving your **communication** and **collaboration** skills as a statistician or data professional. I have given several examples of possible tasks, with potential resources, on the instructions page. BUT you can choose anything that fits this purpose. You can heck ideas with me before submitting, either via office hour or Piazza.]
+]
+
+.pull-right[
+&lt;img src="images/tree.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+
+.midsmall[
+_If a tree falls in a forest, and there's no one around to hear it, does it make a sound? Or, more relevant to this course, if you do a data analysis and can't share it with anyone in helpful ways, did you really do anything?_]
+
+.tiny[Image source: https://www.nsta.org/q-if-tree-falls-forest-and-theres-no-one-around-hear-it-does-it-make-sound]
+]
+
+---
+# To do
+
+.pull-left[
+- [🧺 Module 2 writing](https://q.utoronto.ca/courses/253305/assignments/782393)
+  - _Create_ phase due Jan 28 at 3:03 p.m.
+  - _Assess_ phase due Feb 01 at 3:03 p.m.
+  - _Reflect_ phase due Feb 04 at 3:03 p.m.
+- [🧺 Professional development proposal](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-professional-development-task.html#knowledge-basket-professional-development-task) due Thursday, Feb 3 at 3:03 p.m. ET
+- [Mini-portfolio](https://sta303-bolton.github.io/sta303-w22-courseguide/mini-portfolio.html) due Thursday, Feb 3 at 3:03 p.m. ET 
+
+]
+
+.pull-right[
+- [Make sure you're up to date with the course announcements](https://q.utoronto.ca/courses/253305/discussion_topics/1590418)
+- [Read (and save) the syllabus!](https://q.utoronto.ca/courses/253305/assignments/syllabus)  
+- [Join Piazza](piazza.com/utoronto.ca/winter2022/sta303sta1002)
+]
+
+---
+class: inverse, middle
+
+# Have a great week! 
+# Next Wednesday: Pre-knowledge workshop
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

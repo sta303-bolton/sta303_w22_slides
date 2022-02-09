@@ -1,0 +1,525 @@
+---
+title: "STA303H1S/1002H Module 1"
+subtitle: "Welcome to the course!" 
+author: "Prof. Liza Bolton"
+date: "January 12, 2022"
+output:
+  xaringan::moon_reader:
+    css: "slides_303.css"
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r setup, include=FALSE}
+# R options
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  warm = 1
+  )
+# Set dpi and height for images
+library(knitr)
+opts_chunk$set(fig.height = 2.65, dpi =300, warning=FALSE, message=FALSE) 
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+# For nonsese...
+#library(mdsr)
+#library(emo)
+library(tidyverse)
+#library(gridExtra)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+### xaringan::inf_mr() -> use this for display within Rstudio
+```
+
+
+# Our plan today
+
+.pull-left[
+- Two truths and one lie / introductions
+- 'Netiquette' for class
+- How this course works  
+- Opportunities: Student reps, notetakers, RSGs
+- Upcoming assessments
+- To-dos
+- Team Up! instructions 
+- Practice Team Up! activity
+]
+
+.pull-right[
+```{r, echo=FALSE, fig.align='center', out.width="100%"}
+knitr::include_graphics("images/plan.jpg")
+```
+.tiny[Image source: https://www.shopify.com/blog/business-plan]
+]
+
+
+---
+## 'Netiquette' during class
+
+To keep chat a useful and friendly place, please abide by the following:
+
+- Don't send **private messages** to ask questions
+  - similar logic to Piazza, the answer will help everyone
+  - if it really should be private, it should be an email (on anon Piazza post)
+- If I have **missed your question**, it is okay to post it again 
+- **Stay on topic!** This helps to not distract your peers and makes it easier for us to keep up with questions.
+- **Download a copy of the slides** from the [course overview](https://q.utoronto.ca/courses/253305/pages/course-overview) page to skim through while you wait for class to start. You may see that I've already answered your question and can save yourself the effort. 
+  - My first years would often ask questions to which the answers were literally on the slide in front of them. I am always happy to clarify things, though!
+- Be **kind** to each other. 
+
+---
+class: middle, center, inverse
+
+# How this course works
+
+---
+
+## Lecture and tutorial structure
+
+_"How exactly does the tutorial and lecture work?"_ 
+
+__Wednesdays__: 1st part is (recorded) content/demo and the second is office hour (unrecorded). Aiming for half-half, but will vary.
+
+__Thursdays__: The 1st Thursday of a module will have a Team Up! or other practice activity. This will also be made available asynchronously, but the knowledge basket points for a Team Up! can only be earned by __synchronous, group participation__. The 2nd Thursday will be drop-in TA office hours to get help on content and assessments. 
+
+.small[.footnote[Thursday sessions are not recorded, but the Team Up! or other activities content will be made available to everyone. There are several other ways to earn your knowledge basket points if this doesn't suit your tech setup (e.g. no mic) or time zone.]]
+
+_"Will our lectures on Wednesday be recorded?"_
+
+Yes! (But please remind me at the beginning of class if you notice the recording isn't on.)
+
+---
+## Assessments: Knowledge basket
+
+_"Is this survey part of the knowledge basket grade?"_ ('Getting to know you' survey)  
+
+Yes! Check each assessment's type in its summary table. __Types: basket, mini and main.__
+
+_"I don't really understand the knowledge basket, how will that work? Can we earn more than 5 marks?"_
+
+The knowledge basket maxes out at 5%, otherwise I get in trouble for giving away too many "free" points. (I know, I wish.)
+
+_"Can we do as many knowledge basket activities as we want in order to gain the full 5%?"_
+
+Yes! But do try to plan ahead, as I won't be adding a bunch of make-up opportunities at the end...part of the goal is to incentivize personalized, regular participation in the course to create the best learning outcomes for you.
+
+---
+### Assessments: Knowledge basket (cont.)
+
+_"How fast would we receive grades back for the knowledge basket activities?"_
+
+It will depend, but many should be fairly quick—a few days if autograded/based on completion. 1–2 weeks for professional development proposal and evidence & reflection.
+
+
+_"I am not too sure what ‘pre-knowledge quiz: 80% or workshop’ is supposed to mean."_
+
+If you score 80% or more on the pre-knowledge check, you automatically get 0.5% for doing it + 0.5% for a high score. If you do the check but get less than 80% you get 0.5% for completion, and can still get that additional 0.5% if you come participate in the workshop.
+
+Workshop open to all. And you don't have to go if you have other plan for filling your basket. It is meant to be helpful to you, though. 
+
+And no, you can't get the workshop AND 80%+ points. One or the other for a max of 1%.
+
+---
+### Assessments: Knowledge basket (cont.)
+
+_"What will additional opportunities like speaker series reflections be like?"_
+
+May vary depending on the speaker/workshop, but for next week (grad panel) it will likely be attendance + a short Quercus survey. Just confirming a few things still so, TBA. (Watch for more details in announcements.)
+
+_"Are the three phases of each writing assignment graded on completion?"_
+
+Yes, but see caveats [here in the general instructions for the writing tasks.](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-writing-and-peer-feedback.html#general-instructions)
+
+
+_"No questions, although seems to be a hectic course with a lot of minor deadlines."_
+
+If you don't want lots of little deadlines, you don't have to have lots of little deadlines! Do the professional development tasks + a few Team Ups! or the professional development task + punctuation art. Throw in the pre-knowledge check and you're looking great! 
+
+---
+### Assessments: Portfolios
+
+_"I am curious about the format of portfolio and assessment and how they will be conducted."_
+
+__More info over the next two weeks__, but these will be a lot like a traditional assignment, but with a writing task (the module writing tasks are good indicators and practice) and some additional narrative about what you're learning/demonstrating. You'll submit commented code in an Rmd and the associated PDF. 
+
+---
+### Assessments: Mixed assessments 
+
+_"How does the mixed assessment work? Is it like a midterm?"_
+
+Mostly, except there will also be a small amount of pre-work. More information closer too, but the overall goal is to make it more real-world. When you prep for a big meeting in the real world, you might calculate some summary stats, have a few basic plots ready, have some notes, etc. Sure, there are some things where you'll have to think it through in the moment (in the mixed assessment and in the real world), but I hope having the untimed pre-work helps lessen some of the test anxiety folks can feel. Less mind reading, more targeted prep. 
+
+_"What's the difference between mini and mixed assessments? Are they both term tests?"_
+
+One is bigger and one is smaller. But yeah, the mini has one 50 minute timed component while the main mixed assessment will have more pre-work and two 50 minute timed parts.
+
+---
+### Assessments: Mixed assessments (cont.)
+_Will we get some sample practice problems to work on before the mini-mixed and mixed assessments?_
+
+The 'mini' is effectively practice problems for the main, but Team Up!s will also be useful practice for the mixed assessments. If there isn't a Team Up! (which you've be able to review asynchronously for study purposes) for a module I'll offer a practice quiz (no points) option or other practice activity.
+
+
+_"What exactly will we do in assessment weeks?"_
+
+There is __no new content or writing module__. They are a time to focus your 6–8 hours of weekly STA303 time on the assessment. __Mixed:__ doing the pre-work and the 100 minute (2 x 50) timed component. __Project week:__ working with your group/self, asking questions in office hours. The expectation is that you'll start the project well before then, but I know the end of the semester can be stressful and busy, so I'm making things as simple and focused for you as I can.
+
+---
+### Final project
+
+_"I'm not done going through all the pages at this time, so maybe I missed it, but I was wondering what kind of activities will the final project entail (i.e. video report, analyzing a dataset of our own choosing...)"_
+
+More details before reading week, but you will receive data and a client brief and be asked to create a written report that includes an executive summary as well as a more technical report.
+
+_"The final project weights a lot to our grade, will it be very difficult or tedious?"_
+
+I never know how to answer these types of questions...I mean, I think it is going to be fun and intellectually stimulating!
+
+
+---
+### Assessments: General
+
+_"What are Team Up! activities like? "_
+
+We'll do a practice one today!
+
+_"How we can choose path A or B for the marking scheme-- would this be on Quercus?"_
+
+As long as you're okay with getting the higher of the two marks, I'll calculate your grade both ways and give you the higher one.
+
+_"So are all assessment due on Thursday 3:03?"_
+
+Almost all the big ones! The mixed assessments have a window, but professional development proposal, professional development evidence & reflection, mini-portfolio, portfolio and project are all due on a Thursday at 3:03 p.m.
+
+---
+### Assessments: General
+
+_"Are we allowed to answer assignments with python, as previous statistics courses let us use python instead of R."_
+
+This is an R-based course, so only coding assessments using R will be accepted.
+
+_"What are the minimum requirements to pass the course?"_
+
+50% overall, no special conditions.
+
+
+---
+## General/other
+
+_"No question but it's too messy to read."_
+
+If you don't like the PDF version of the syllabus, there is a plain text version also linked. Or, if you're having trouble with the plain text...have you seen the PDF? A bit more information would have made this feedback more helpful! 
+
+_"I am really scared of taking class in person since I don't want to get COVID."_
+
+Nothing in _this_ course requires you to be in-person, so you can plan to participate in ways that will suit your needs and situation. 
+
+_"Will all assessments of this course online?"_
+
+Yes!
+
+
+---
+
+_"I am interested in getting my hands dirty with R to improve my skills. Can you suggest some datasets to work with?"_
+
+Great question! [The TidyTuesday community is my go to recommendation.](https://www.lizabolton.com/advice.html#data-cleaningwranglingvisualization-experience-or-personal-projects) 
+
+
+_"Under what conditions would you be willing to provide a reference letter."_
+
+Lots on letters [here](https://www.lizabolton.com/references.html).
+
+---
+# Volunteers needed!
+
+.large[
+- [Notetaker](https://sta303-bolton.github.io/sta303-w22-courseguide/announcements-summary.html#notetaker)
+
+- [Student reps](https://sta303-bolton.github.io/sta303-w22-courseguide/announcements-summary.html#studentrep)]
+
+---
+class: middle, inverse, center
+# Assessments
+
+---
+## 'Getting to know you' survey
+
+[__Link__](https://q.utoronto.ca/courses/253305/quizzes/235067)
+
+Based on completion.
+
+## Module 1 writing
+
+[__Link__](https://q.utoronto.ca/courses/253305/assignments/781343)
+
+#### Prompt
+
+Discuss what you consider the most important dos and don'ts when giving peer feedback. What will make your peers' feedback most valuable to you?
+
+---
+## Pre-knowledge check
+Answer the pre-knowledge check quiz questions to the best of your ability. In Quercus, you will see two assignment entries, one for the quiz and for storing your final score that takes into account completion of the quiz and the 80%+ score or workshop engagement/attendance.
+
+__You are welcome to use any calculator you wish and/or R.__
+
+There are 15 points across 16 questions, so you have about 4 minutes per point. The structure is outlined in the [course guide](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-other.html#pre-knowledge-check). You may find having read the syllabus first helpful for question 1.
+
+
+---
+## Professional development task due Feb 3 (at 3:03 p.m. ET)
+
+.pull-left[
+.midi[
+[Task overview link](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-professional-development-task.html) 
+
+[Specific proposal instructions](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-professional-development-task.html#professional-development-proposal)
+
+The task you choose must be clearly relevant to improving your **communication** and **collaboration** skills as a statistician or data professional. I have given several examples of possible tasks, with potential resources, on the instructions page. BUT you can choose anything that fits this purpose. You can heck ideas with me before submitting, either via office hour or Piazza.]
+]
+
+.pull-right[
+```{r, echo=FALSE, fig.align='center', out.width="100%"}
+knitr::include_graphics("images/tree.jpg")
+```
+
+.midsmall[
+_If a tree falls in a forest, and there's no one around to hear it, does it make a sound? Or, more relevant to this course, if you do a data analysis and can't share it with anyone in helpful ways, did you really do anything?_]
+
+.tiny[Image source: https://www.nsta.org/q-if-tree-falls-forest-and-theres-no-one-around-hear-it-does-it-make-sound]
+]
+
+---
+# To do
+
+.pull-left[
+- [🧺 'Getting to know you' survey](https://q.utoronto.ca/courses/253305/quizzes/235067) due Jan 13 at 3:03 p.m.
+- [🧺 Pre-knowledge check](https://q.utoronto.ca/courses/253305/quizzes/235900) due Jan 20 at 3:03 p.m.
+- [🧺 Module 1 writing](https://q.utoronto.ca/courses/253305/assignments/781343)
+  - Create phase due Jan 14 at 3:03 p.m.
+  - Assess phase due Jan 18 at 3:03 p.m.
+  - Reflect phase due Jan 21 at 3:03 p.m.
+- [🧺 Professional development proposal](https://sta303-bolton.github.io/sta303-w22-courseguide/knowledge-basket-professional-development-task.html#knowledge-basket-professional-development-task) is due Thursday, Feb 3 at 3:03 p.m. ET]
+
+.pull-right[
+- [Read (and save) the syllabus!]()  
+- [Join Piazza](piazza.com/utoronto.ca/winter2022/sta303sta1002)
+
+
+<br><br>
+
+- [Put yourself forward as a student representative, if interested](https://sta303-bolton.github.io/sta303-w22-courseguide/announcements-summary.html#studentrep)  
+- [Be a volunteer notetaker](https://sta303-bolton.github.io/sta303-w22-courseguide/announcements-summary.html#notetaker)
+]
+
+---
+class: middle, center, inverse
+
+# Team Up! prep
+
+---
+## Troubleshooting interatives in R
+
+As you may have seen in Section 14.6 of the course guide, there is an interactive version of those notes, where you can 'code along' to practice your skills. This uses R and specifically a package called `learnr` and `shiny` apps.
+
+### To try now
+
+- [Can you open the interactive notes?](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fsta303-bolton%2Fsta303-w22-activities&urlpath=shiny%2Fsta303-w22-activities%2Finst%2Ftutorials%2Fsta303_m1_tests%2F&branch=master)
+- [Can you open the question document for today's Team Up!?](https://jupyter.utoronto.ca/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fsta303-bolton%2Fsta303-w22-activities&urlpath=shiny%2Fsta303-w22-activities%2Finst%2Ftutorials%2Fsta303_m1_practice%2F&branch=master)
+
+.footnote[Today's document isn't really "interactive", but there may be coding tasks in future tasks, so I am going to keep things consistent]
+
+---
+class: middle, inverse, center
+# Team Up! tomorrow
+
+---
+## What to do tomorrow
+
+1. Remember, you don't _have_ to participate in Team Up! activities, there are plenty of other ways to earn your knowledge basket marks. 
+  - Only participate if you really are going to participate. __You should be able to use your mic to discuss the questions__ as typing back and forth will not be time effective. 
+  - No lurkers allowed. An asynchronous version made available afterwards if you just don't want to miss out on practice.
+
+2. Decide if you want to be __randomized__ into a group or __work with a group of people you already know__ in the course (section/tut enrolment doesn't matter). 
+  - If randomized (at least for module 1), join the Zoom link for the tutorial time. 'Arrive' on time as latecomers may not be placed in a group.
+  - If working with your own group, you don't need to join the call (but can if you get stuck with the tech!). 
+
+---
+class: middle, inverse
+
+## Important information about Team Up! grades
+
+**Team Up! does not have a great back end. If you don't submit correctly or don't join a group correctly, I CANNOT go in and check or move you around. FOLLOW INSTRUCTIONS. No accommodations will be made for Team Up! issues.**
+
+- You must do this as a __group activity, during a tutorial time__, if you wish to receive knowledge basket grade. __A 'group' is 2–4 people.__  
+- Solo Team Up! participation will _not_ earn points. 
+- You cannot do a Team Up! more than once.  
+- Team Up! marks will _not_ be updated by hand (e.g., if you end up in a solo group/tech issues, etc.).
+
+While I intend to offer a Team Up! in each module, it may be the case that this doesn't happen. Make sure you are planning appropriately for your knowledge basket component. 
+
+---
+class: middle, inverse
+
+.large[Regardless of a grade, Team Up! activities are a great chance to practice _talking_ about statistics, meet other students (whom you might want to work on the project with), and motivate you to keep up with the content from the modules.]
+
+---
+## Team Up!
+
+.pull-left[
+Participating in Team Up! activities will earn you knowledge basket points. They will be based on how well your team does, so work together and give it a good effort. 
+
+You will complete the following 5 steps:
+.midi[
+1. **Introductions** (first/personal name + a one-word description of how your week is going so far). Use this time to confirm everyone understands the instructions.
+2. **Driver** sets up Team Up! group
+3. **Members** join Team Up! group
+4. Complete the activity
+5. **Submit** the activity
+]]
+
+.pull-right[
+.highlight[Today, you will have **15 minutes**.] If your group is not talking or at least using chat, please click ‘Ask for Help’ and I will come check on you. ]
+
+---
+# 1 Decide on roles
+
+You will need: 
+
+* An **Instructions Master** who is responsible for helping the team follow these instructions carefully.  
+* A **Screensharer** who is responsible for sharing the activity on their screen.
+* A **Driver** for the Team Up! side of the activity. 
+
+DECIDE THIS BEFORE CLICKING ANYTHING TO DO WITH TEAM UP!
+
+---
+# 2 Driver sets up group
+.pull-left[
+The person in your group whose first/personal name comes last alphabetically will be the Leader (Driver) for the session.
+
+**The Driver must do the below steps FIRST to get the group code.** Then they will share the group code with all the members of the group so they can also join.
+
+1 Log-in to Quercus from your device (phone, tablet, computer).]
+
+.pull-right[
+2 Click on the Team Up! activity from the [Course Overview](https://q.utoronto.ca/courses/204826/pages/course-overview) page.
+
+```{r, echo=FALSE, fig.align='center', out.width="100%"}
+knitr::include_graphics("images/loadTU.png")
+```
+
+3 This will open a new tab where you will have to press ‘Go to Tool’
+
+```{r, echo=FALSE, fig.align='center', out.width="100%", fig.align="center"}
+knitr::include_graphics("images/gototool.png")
+```
+
+NON-DRIVERS! DO NOT TOUCH ANYTHING!
+]
+
+---
+# 2 Driver set up group cont.
+
+.pull-left[
+4 Choose “Create New Group”
+
+```{r, echo=FALSE, fig.align='center', out.width="100%", fig.align="center"}
+knitr::include_graphics("images/choose create.png")
+```
+]
+
+.pull-right[
+5 Share group ID in Zoom 
+```{r, echo=FALSE, fig.align='center', out.width="100%", fig.align="center"}
+knitr::include_graphics("images/group id.png")
+```
+]
+
+---
+class: middle 
+## Your role as the Driver:
+
+The Driver acts as team leader, responsible for navigating the quiz, confirming the team's final agreed upon answer to a question, and submitting the completed quiz score to Quercus. 
+
+The Driver has a steering wheel next to their ID and is differently coloured than other Team Members.
+
+
+---
+# 3 Members join
+
+Once the Driver has shared the group ID, AND ONLY THEN do the following:
+
+1 Click on the Team Up! activity from the [Course Overview](https://q.utoronto.ca/courses/204826/pages/course-overview) page.
+
+```{r, echo=FALSE, fig.align='center', out.width="70%"}
+knitr::include_graphics("images/loadTU.png")
+```
+
+2 This will open a new tab where you will have to press ‘Go to Tool’
+
+```{r, echo=FALSE, fig.align='center', out.width="40%", fig.align="center"}
+knitr::include_graphics("images/gototool.png")
+```
+
+---
+# 3 Members join cont.
+
+3 Input the code your driver provided and click 'Join Group'. 
+
+```{r, echo=FALSE, fig.align='center', out.width="45%", fig.align="center"}
+knitr::include_graphics("images/choose create.png")
+```
+
+---
+class: middle
+
+# Your role as a Team Member
+Team Members participate and choose their answers, so all team mates can see what they have chosen, but they cannot submit their choices to Team Up!.
+
+---
+# 4 Complete the activity
+
+.midi[
+1. You will need to have the interactive activity associated with this task open on to see the answer options and update the code. Be prepared to switch between Team Up! and the JupyterHub tab.
+
+2. The Driver chooses a question, and the team can participate by choosing their own answers and discussing their choices with each other. Once the team decides on a final answer, the driver chooses it and clicks the Check Answer button. .highlight[**Note**: The Driver can check an answer despite what the team members choose, so be careful that you have consensus before clicking the Check Answer button. You cannot undo.]
+
+3. If the answer is correct, you will be awarded the full score or “diamonds” for that question. You will be able to proceed onward by clicking the Next button that will appear under the Check Answer button or by clicking on a question in the menu on the left. If your team's answer is not correct, discuss the question and choose again. Repeat until you get the correct answer. All teammates can see whether responses are correct/incorrect as well as their team's overall score as they progress through the Team Up! session.
+]
+
+---
+class: middle
+# 5 The Driver MUST click Submit to Quercus for your answers to be processed. If this is not done, no one on the team will get a grade!!!!
+
+```{r, echo=FALSE, fig.align='center', out.width="70%", fig.align="center"}
+knitr::include_graphics("images/submit.png")
+```
+
+---
+class: middle, inverse, center
+# Questions before we get started?
+
+
+---
+class: inverse, middle
+
+# Have a great week! 
+# Next Wednesday: Grad panel
+
+```{r eval = FALSE, echo = FALSE}
+
+pagedown::chrome_print("sta303_w22_m1-class.html", wait = 20)
+
+```
+
